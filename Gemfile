@@ -24,10 +24,14 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'rspec-mocks'
   gem 'factory_girl'
+  gem 'shoulda-matchers'
+  gem 'shoulda-context'
 end
 
 gem 'jquery-rails'
 gem 'json'
+gem 'httparty'
+gem 'pry'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

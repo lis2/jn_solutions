@@ -9,8 +9,6 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-ENV.update YAML.load(File.read(File.expand_path('../config.yml', __FILE__)))
-
 module JnSolutions
   class Application < Rails::Application
 
