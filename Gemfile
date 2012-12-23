@@ -32,6 +32,7 @@ gem 'jquery-rails'
 gem 'json'
 gem 'httparty'
 gem 'pry'
+gem 'zip'
 
 gem "therubyracer"
 gem "less-rails"

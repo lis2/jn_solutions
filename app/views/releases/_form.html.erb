@@ -1,0 +1,13 @@
+<% if commits.present? %>
+  <h2>Create release</h2>
+  <%= form_for :release do |f| %>
+    <fieldset>
+      <%= f.label :commit_id, "Commit" %>
+      <%= f.collection_select(:commit_id, commits, :id, :message) %>
+    </fieldset>
+    <%= f.submit "Add", class: "btn" %>
+  <% end %>
+<% else %>
+  <h2>No commits available</h2>
+<% end %>
+

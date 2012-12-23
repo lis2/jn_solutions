@@ -1,0 +1,6 @@
+<tr>
+  <td><%= release.commit.author %></td>
+  <td><%= release.commit.sha %></td>
+  <td><%= l release.created_at, format: :short %></td>
+  <td><%= link_to "rebuild", rebuild_release_path(release) %></td>
+</tr>

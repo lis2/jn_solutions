@@ -6,5 +6,7 @@ class Commit < ActiveRecord::Base
   validates_presence_of :message
   validates_presence_of :commit_created_at
 
-  belongs_to :release
+  has_one :release
+
+  scope :available, ->(release) { where("commit_created_at > ?", release.commit.commit_created_at) }
 end

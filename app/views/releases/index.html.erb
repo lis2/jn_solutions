@@ -1,8 +1,19 @@
-<h1>Releases</h1>
-<% @commits.each do |commit| %>
-  <%= commit.message %><br />
-<% end %>
 <% if @releases.present? %>
-
+  <h1>Releases</h1>
+  <table class="table">
+    <thead>
+      <th>Author</th>
+      <th>SHA</th>
+      <th>Created at</th>
+      <th>Actions</th>
+    </thead>
+    <tbody>
+      <%= render partial: "release", collection: @releases %>
+    </tbody>
+  </table>
+<% else %>
+  <h1>No releases available</h1>
 <% end %>
+
+<%= render "form", commits: @commits %>
 

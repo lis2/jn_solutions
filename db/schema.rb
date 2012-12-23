@@ -11,14 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121223110430) do
+ActiveRecord::Schema.define(:version => 20121223113735) do
 
   create_table "commits", :force => true do |t|
     t.string   "sha"
     t.string   "author"
     t.string   "message"
     t.datetime "commit_created_at"
-    t.integer  "release_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
@@ -26,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20121223110430) do
   create_table "releases", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "commit_id"
   end
 
 end
