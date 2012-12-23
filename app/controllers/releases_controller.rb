@@ -31,7 +31,7 @@ class ReleasesController < ApplicationController
   end
 
   def load_github
-    if response = GitHub.limit_exceeded?
+    if GitHub.limit_exceeded?
       flash[:info] = "Github exceeded"
     else
       GitHub.load_commits
