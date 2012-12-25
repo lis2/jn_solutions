@@ -11,15 +11,22 @@ describe Commit do
 
   describe "available commits" do
     let!(:commit) { FactoryGirl.create(:commit) }
+    let(:release_timestamp) { Time.now }
+    let(:release) { stub }
 
-    it "doesnt return" do
-      release = OpenStruct.new(commit: OpenStruct.new(commit_created_at: Time.now + 10.minute))
-      Commit.available(release).size.should == 0
+    before { release.stub_chain('commit.commit_created_at').
+              and_return(release_timestamp) }
+    subject { Commit.available(release) }
+
+    context 'when there is none' do
+      let(:release_timestamp) { Time.now - 10.minute }
+      it { should == [ commit ] }
     end
 
-    it "returns available" do
-      release = OpenStruct.new(commit: OpenStruct.new(commit_created_at: Time.now - 10.minute))
-      Commit.available(release).size.should == 1
+    context 'when there is one' do
+      let(:release_timestamp) { Time.now + 10.minute }
+      it { should be_empty }
     end
+
   end
 end
