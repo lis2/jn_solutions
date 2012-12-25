@@ -1,17 +1,22 @@
 require 'spec_helper'
 require 'ostruct'
 
-describe GitHub do
-  before(:each) {  }
+describe GitHub, '#limit_exceeded?' do
+  let(:code) { 200 }
+  let(:message) { '' }
+  let(:response) { stub code: code, message: message }
 
-  it "check if limit exceeded" do
-    HTTParty.stub("get").and_return(OpenStruct.new(code: 200))
-    GitHub.limit_exceeded?.should == false
+  before { HTTParty.stub get: response }
+  subject { GitHub.limit_exceeded? }
+
+  context 'when the limit has not been exceeded' do
+    let(:code) { 200 }
+    it { should be_false }
   end
 
-  it "alert if limit exceeded" do
-    HTTParty.stub("get").and_return(OpenStruct.new(code: 400, message: "exceeded"))
-    GitHub.limit_exceeded?.should == true
+  context 'when the limit has been exceeded' do
+    let(:code) { 400 }
+    let(:message) { 'exceeded' }
+    it { should be_true }
   end
 end
-
